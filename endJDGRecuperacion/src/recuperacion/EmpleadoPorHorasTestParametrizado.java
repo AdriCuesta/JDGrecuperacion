@@ -66,7 +66,7 @@ public class EmpleadoPorHorasTestParametrizado {
 	
 	@Test
 	public void testSalarioNeto() {
-		assertEquals(salarioEsperado, empleado.calcularSalarioBruto(pagaExtra, prorrateoPaga),0.01);
+		assertEquals(salarioEsperado, empleado.calcularSalarioNeto(pagaExtra, prorrateoPaga),0.01);
 	}
 	
 	@Ignore
