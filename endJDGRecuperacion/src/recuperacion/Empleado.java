@@ -8,9 +8,11 @@ public abstract class Empleado {
     protected float irpf;
 
 	public Empleado(String nombre, double salarioBase, Boolean autonomo, float irpf) {
+		
         if (salarioBase < SALARIO_MINIMO_INTERPROFESIONAL) {
             throw new IllegalArgumentException("El salario base no puede ser negativo");
         }
+        
         this.nombre = nombre;
         this.salarioBase = salarioBase;
         this.autonomo = autonomo;
