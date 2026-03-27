@@ -16,13 +16,13 @@ public class EmpleadoPorHoras extends EmpleadoTiempoCompleto {
 	public double calcularSalarioNeto(double pagaExtra, int prorrateoPaga) {
 
 		double salarioNeto;
-		
+
 		if (!autonomo) {
-			
+
 			salarioNeto = super.calcularSalarioNeto(pagaExtra, prorrateoPaga);
-			
+
 		} else {
-			
+
 			double salarioBruto = super.calcularSalarioBruto(pagaExtra, prorrateoPaga);
 			double retencion = salarioBruto * (7 / 100);
 
@@ -31,14 +31,27 @@ public class EmpleadoPorHoras extends EmpleadoTiempoCompleto {
 
 		return salarioNeto;
 	}
-	
+
 	public double calcularSalarioBruto(double comisionesEmpleado) {
-		
-		if(comisionesEmpleado < 0) {
+
+		if (comisionesEmpleado < 0) {
 			throw new IllegalArgumentException("Las comisiones obtenidas por el empleado no pueden ser negativas");
 		}
-		
+
 		return (super.salarioBase + comisionesEmpleado);
+	}
+
+	public double calcularSalarioNeto(double comisionesEmpleado) {
+		double salarioNeto;
+
+		if(!autonomo) {
+			salarioNeto = (calcularSalarioBruto(comisionesEmpleado) - 
+					(calcularSalarioBruto(comisionesEmpleado) * (7/100)));
+		}else {
+			salarioNeto = calcularSalarioBruto(comisionesEmpleado);
+		}
+
+		return salarioNeto;
 	}
 
 }
