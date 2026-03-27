@@ -1,0 +1,57 @@
+package recuperacion;
+
+public class EmpleadoPorHoras extends EmpleadoTiempoCompleto {
+
+	public EmpleadoPorHoras(String nombre) {
+		super(nombre);
+		// TODO Auto-generated constructor stub
+	}
+
+	public EmpleadoPorHoras(String nombre, double salarioBase, Boolean autonomo, float irpf) {
+		super(nombre, salarioBase, autonomo, irpf);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public double calcularSalarioNeto(double pagaExtra, int prorrateoPaga) {
+
+		double salarioNeto;
+
+		if (!autonomo) {
+
+			salarioNeto = super.calcularSalarioNeto(pagaExtra, prorrateoPaga);
+
+		} else {
+
+			double salarioBruto = super.calcularSalarioBruto(pagaExtra, prorrateoPaga);
+			double retencion = salarioBruto * (7 / 100);
+
+			salarioNeto = salarioBruto - retencion;
+		}
+
+		return salarioNeto;
+	}
+
+	public double calcularSalarioBruto(double comisionesEmpleado) {
+
+		if (comisionesEmpleado < 0) {
+			throw new IllegalArgumentException("Las comisiones obtenidas por el empleado no pueden ser negativas");
+		}
+
+		return (super.salarioBase + comisionesEmpleado);
+	}
+
+	public double calcularSalarioNeto(double comisionesEmpleado) {
+		double salarioNeto;
+
+		if(!autonomo) {
+			salarioNeto = (calcularSalarioBruto(comisionesEmpleado) - 
+					(calcularSalarioBruto(comisionesEmpleado) * (7/100)));
+		}else {
+			salarioNeto = calcularSalarioBruto(comisionesEmpleado);
+		}
+
+		return salarioNeto;
+	}
+
+}
