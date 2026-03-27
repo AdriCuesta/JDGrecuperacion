@@ -31,5 +31,14 @@ public class EmpleadoPorHoras extends EmpleadoTiempoCompleto {
 
 		return salarioNeto;
 	}
+	
+	public double calcularSalarioBruto(double comisionesEmpleado) {
+		
+		if(comisionesEmpleado < 0) {
+			throw new IllegalArgumentException("Las comisiones obtenidas por el empleado no pueden ser negativas");
+		}
+		
+		return (super.salarioBase + comisionesEmpleado);
+	}
 
 }
