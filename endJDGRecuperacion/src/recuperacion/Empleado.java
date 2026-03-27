@@ -25,6 +25,15 @@ public abstract class Empleado {
     }
 	
 	public double calcularSalarioBruto(double pagaExtra, int prorrateoPaga) {
+		
+		if(pagaExtra < 0) {
+			throw new IllegalArgumentException("La paga extra no puede ser negativa");
+		}
+		
+		if(prorrateoPaga < 1 && prorrateoPaga > 12) {
+			throw new IllegalArgumentException("El prorrateo de la paga deber estar comprendido entre 1 y 12");
+		}
+		
 		return ((salarioBase)+(pagaExtra/prorrateoPaga));
 	}
 	
