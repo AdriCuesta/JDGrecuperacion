@@ -24,6 +24,12 @@ public abstract class Empleado {
         this.irpf=0;
     }
 	
+	public double calcularSalarioBruto(double pagaExtra, int prorrateoPaga) {
+		return ((salarioBase)+(pagaExtra/prorrateoPaga));
+	}
+	
+	public abstract double calcularSalarioNeto();
+	
     public String getNombre() {
         return nombre;
     }
