@@ -28,7 +28,7 @@ public abstract class Empleado {
 		return ((salarioBase)+(pagaExtra/prorrateoPaga));
 	}
 	
-	public abstract double calcularSalarioNeto();
+	public abstract double calcularSalarioNeto(double pagaExtra, int prorrateoPaga);
 	
     public String getNombre() {
         return nombre;
